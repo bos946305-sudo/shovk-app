@@ -33,7 +33,7 @@ jobs:
           flutter create --platforms=android --project-name shovk_app --org ua.shovk _android_tmp
           cp -r _android_tmp/android ./android
           rm -rf _android_tmp
-          python3 tools/prepare_android.py
+python3 prepare_android.py
 
       - name: Установить зависимости
         run: flutter pub get
