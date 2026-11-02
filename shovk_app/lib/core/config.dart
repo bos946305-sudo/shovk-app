@@ -4,10 +4,10 @@ class AppConfig {
   AppConfig._();
 
   /// true: данные демонстрационные, бэкенд не нужен.
-  static const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: true);
+static const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: false);
 
   /// Адрес бэкенда. 10.0.2.2 — ваш компьютер, если смотреть из Android-эмулятора.
-  static const String apiBase = String.fromEnvironment('API_BASE', defaultValue: 'http://10.0.2.2:8000');
+static const String apiBase = String.fromEnvironment('API_BASE', defaultValue: 'https://shovk-app.onrender.com');
 
   /// Тот же, что APP_TOKEN на бэкенде. Нужен только чтобы получить гостевой JWT.
   static const String appToken = String.fromEnvironment('APP_TOKEN');
