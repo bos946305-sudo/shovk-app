@@ -57,7 +57,7 @@ if "flutter_deeplinking_enabled" not in s:
         fail("не найден тег </activity>")
 manifest.write_text(s, encoding="utf-8")
 
-# ---- build.gradle(.kts): minSdk 23 и applicationId
+# ---- build.gradle(.kts): minSdk 26 и applicationId
 gradle = next((APP / n for n in ("build.gradle.kts", "build.gradle") if (APP / n).exists()), None)
 if gradle is None:
     fail("не найден android/app/build.gradle")
@@ -67,7 +67,7 @@ t = re.sub(r'applicationId(\s*=\s*|\s+)"[^"]+"', lambda m: f'applicationId{m.gro
 gradle.write_text(t, encoding="utf-8")
 
 if not re.search(r"minSdk(Version)?(\s*=\s*|\s+)26\b", t):
-    print("ВНИМАНИЕ: minSdk не удалось выставить в 23, проверьте build.gradle вручную")
+    print("ВНИМАНИЕ: minSdk не удалось выставить в 26, проверьте build.gradle вручную")
 if APP_ID not in t:
     print("ВНИМАНИЕ: applicationId не заменён, проверьте build.gradle вручную")
 print(f"Android подготовлен: applicationId={APP_ID}, домен ссылок={HOST}")
