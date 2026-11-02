@@ -1,6 +1,6 @@
 """
 Готовит Android-часть проекта (папку android/, созданную командой `flutter create`):
-разрешения INTERNET и POST_NOTIFICATIONS, deep links, minSdk 23, имя приложения и applicationId.
+разрешения INTERNET и POST_NOTIFICATIONS, deep links, minSdk 26, имя приложения и applicationId.
 Запуск из корня проекта: python3 tools/prepare_android.py
 Переменные: PUBLIC_HOST (домен для ссылок), APP_ID (по умолчанию ua.shovk.app).
 """
@@ -62,11 +62,11 @@ gradle = next((APP / n for n in ("build.gradle.kts", "build.gradle") if (APP / n
 if gradle is None:
     fail("не найден android/app/build.gradle")
 t = gradle.read_text(encoding="utf-8")
-t = re.sub(r"minSdk(Version)?(\s*=\s*|\s+)flutter\.minSdkVersion", lambda m: f"minSdk{m.group(1) or ''}{m.group(2)}23", t)
+t = re.sub(r"minSdk(Version)?(\s*=\s*|\s+)flutter\.minSdkVersion", lambda m: f"minSdk{m.group(1) or ''}{m.group(2)}26", t)
 t = re.sub(r'applicationId(\s*=\s*|\s+)"[^"]+"', lambda m: f'applicationId{m.group(1)}"{APP_ID}"', t)
 gradle.write_text(t, encoding="utf-8")
 
-if not re.search(r"minSdk(Version)?(\s*=\s*|\s+)23\b", t):
+if not re.search(r"minSdk(Version)?(\s*=\s*|\s+)26\b", t):
     print("ВНИМАНИЕ: minSdk не удалось выставить в 23, проверьте build.gradle вручную")
 if APP_ID not in t:
     print("ВНИМАНИЕ: applicationId не заменён, проверьте build.gradle вручную")
